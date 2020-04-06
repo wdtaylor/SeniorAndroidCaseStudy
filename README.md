@@ -6,9 +6,38 @@
 
 adb shell am start -a com.android.vending.INSTALL_REFERRER --es referrer "https%3a%2f%2fm.alltheapps.org%2fget%2fapp%3fuserId%3dB1C92850-8202-44AC-B514-1849569F37B6%26implementationid%3dcl-and-erp%26trafficSource%3derp%26userClass%3d20200101"
 
+<div align="center">
+    <img src="/documents/driver_screen1.png" height="700px"</img> 
+</div>
+
+<div align="center">
+    <img src="/documents/google_play_broadcast_screen.png" height="700px"</img> 
+</div>
+
+<div align="center">
+    <img src="/documents/driver_screen2.png" height="700px"</img> 
+</div>
+
+<div align="center">
+    <img src="/documents/database_list_screen.png" height="700px"</img> 
+</div>
+
+
 // Launches app with deeplink Intent
 
 adb shell am start -W -a android.intent.action.VIEW -d "spigot://eng.dev/cs/product_info?id=12345\&trafficSource=deeplink" tov.com.seniorandroidcasestudy
+
+<div align="center">
+    <img src="/documents/driver_screen3.png" height="500px"</img> 
+</div>
+
+<div align="center">
+    <img src="/documents/deeplink_screen.png" height="500px"</img> 
+</div>
+
+<div align="center">
+    <img src="/documents/clipboard_alert.png" height="500px"</img> 
+</div>
 
 ### Part 2
 
