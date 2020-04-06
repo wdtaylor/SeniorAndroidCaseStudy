@@ -3,13 +3,13 @@ package tov.com.seniorandroidcasestudy.broadcastreceiver
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import tov.com.seniorandroidcasestudy.data.Constants.Companion.ACTION_INSTALL_REFERRER
+import tov.com.seniorandroidcasestudy.data.Constants.Companion.KEY_REFERRER
 
+@Deprecated("Not used in project")
 class GooglePlayReferrerReceiver(private val callback: (intent: Intent?) -> Unit) : BroadcastReceiver() {
 
     companion object {
-        const val ACTION_INSTALL_REFERRER = "com.android.vending.INSTALL_REFERRER"
-        const val KEY_REFERRER = "referrer"
-
         fun sendBroadcastNow(context: Context?){
             Intent().also { intent ->
                 intent.action = ACTION_INSTALL_REFERRER

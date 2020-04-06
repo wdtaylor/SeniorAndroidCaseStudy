@@ -7,20 +7,17 @@ import android.net.Uri
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
-import retrofit2.converter.moshi.MoshiConverterFactory
 import timber.log.Timber
-import tov.com.seniorandroidcasestudy.broadcastreceiver.GooglePlayReferrerReceiver
+import tov.com.seniorandroidcasestudy.data.Constants.Companion.KEY_REFERRER
 import tov.com.seniorandroidcasestudy.data.database.DeepLinkLogDao
 import tov.com.seniorandroidcasestudy.data.database.MarketingLogDao
 import tov.com.seniorandroidcasestudy.data.model.DeepLinkLogData
 import tov.com.seniorandroidcasestudy.data.model.MarketingLogData
 import tov.com.seniorandroidcasestudy.data.network.CaseStudyPostApi
 import java.net.URLDecoder
-import java.util.logging.Handler
 
 class MarketingLogRepository(
     private val context: Context,
@@ -38,24 +35,6 @@ class MarketingLogRepository(
         callbackReferrer?.invoke(resultMap)
         Log.d(TAG, resultMap.toString())
     }
-
-    //private var googlePlayReferrerReceiver : GooglePlayReferrerReceiver = GooglePlayReferrerReceiver(::callback)
-
-    // my function to pass into the other
-    private fun callback(intent: Intent?) {
-        val resultMap = parseIntentData(intent)
-        launch { logMarketingData(resultsMap = resultMap) }
-        callbackReferrer?.invoke(resultMap)
-        Log.d(TAG, resultMap.toString())
-    }
-
-//    init {
-//        context.registerReceiver(googlePlayReferrerReceiver, IntentFilter(GooglePlayReferrerReceiver.ACTION_INSTALL_REFERRER))
-//    }
-
-//    fun getIsAlive(): Boolean {
-//        return true
-//    }
 
     private var callbackReferrer: ((map: HashMap<String, String?>) -> Unit)? = null
     fun registerCallBackReferrer(callback: (map: HashMap<String, String?>) -> Unit) {
@@ -87,7 +66,7 @@ class MarketingLogRepository(
 
         val resultsMap: HashMap<String, String?> = HashMap()
 
-        intent?.extras?.get(GooglePlayReferrerReceiver.KEY_REFERRER)?.let {
+        intent?.extras?.get(KEY_REFERRER)?.let {
             val uri = Uri.parse(URLDecoder.decode(it.toString(), "UTF-8") as String)
 
             resultsMap[MarketingLogDao.userId] = uri.getQueryParameter(MarketingLogDao.userId)
