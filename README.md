@@ -4,7 +4,7 @@
 
 #### App Arcthitecture
 
-The app architecture is MVVM (Model–view–viewmodel) with Koin dependency injection, Room entity database, Retrofit2 for api calls, coroutines for blocking/async calls, and androidx ui components.
+The app is written in Kotlin and the architecture is MVVM (Model–view–viewmodel) with Koin dependency injection, Room entity database, Retrofit2 for api calls, coroutines for blocking/async calls, and androidx ui components.
 
 //Launches app with Google Play Intent
 
